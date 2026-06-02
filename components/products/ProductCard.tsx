@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Heart, Star, ShoppingBag } from "lucide-react";
 import { Product, categoryLabels, categoryEmojis } from "@/data/products";
 import { toggleFavorite, isFavorite } from "@/lib/favorites";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 type Props = {
@@ -14,8 +14,20 @@ type Props = {
   showReason?: boolean;
 };
 
+const categoryBg: Record<string, string> = {
+  cleanser: "bg-blue-50",
+  toner: "bg-cyan-50",
+  serum: "bg-yellow-50",
+  moisturizer: "bg-green-50",
+  sunscreen: "bg-orange-50",
+  mask: "bg-emerald-50",
+  eye_cream: "bg-purple-50",
+  oil: "bg-pink-50",
+};
+
 export default function ProductCard({ product, reason, showReason }: Props) {
   const [favorited, setFavorited] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     setFavorited(isFavorite(product.id));
@@ -28,22 +40,22 @@ export default function ProductCard({ product, reason, showReason }: Props) {
 
   return (
     <Card className="overflow-hidden hover:shadow-md transition-shadow border-rose-100">
-      <div className={`relative aspect-square flex items-center justify-center ${
-        {
-          cleanser: "bg-blue-50",
-          toner: "bg-cyan-50",
-          serum: "bg-yellow-50",
-          moisturizer: "bg-green-50",
-          sunscreen: "bg-orange-50",
-          mask: "bg-emerald-50",
-          eye_cream: "bg-purple-50",
-          oil: "bg-pink-50",
-        }[product.category] ?? "bg-rose-50"
-      }`}>
-        <div className="text-6xl">{categoryEmojis[product.category]}</div>
+      <div className={`relative aspect-square flex items-center justify-center ${categoryBg[product.category] ?? "bg-rose-50"}`}>
+        {!imgError ? (
+          <Image
+            src={product.imageUrl}
+            alt={product.name}
+            fill
+            className="object-contain p-3"
+            onError={() => setImgError(true)}
+            unoptimized
+          />
+        ) : (
+          <div className="text-6xl">{categoryEmojis[product.category]}</div>
+        )}
         <button
           onClick={handleFavorite}
-          className="absolute top-2 right-2 p-2 rounded-full bg-white/80 hover:bg-white transition-colors"
+          className="absolute top-2 right-2 p-2 rounded-full bg-white/80 hover:bg-white transition-colors z-10"
           aria-label={favorited ? "お気に入りから外す" : "お気に入りに追加"}
         >
           <Heart
@@ -52,7 +64,7 @@ export default function ProductCard({ product, reason, showReason }: Props) {
             }`}
           />
         </button>
-        <Badge className="absolute bottom-2 left-2 bg-white text-rose-600 border-rose-200 text-xs">
+        <Badge className="absolute bottom-2 left-2 bg-white text-rose-600 border-rose-200 text-xs z-10">
           {categoryLabels[product.category]}
         </Badge>
       </div>
@@ -68,7 +80,7 @@ export default function ProductCard({ product, reason, showReason }: Props) {
         <div className="flex items-center gap-1">
           <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
           <span className="text-xs font-medium text-gray-700">{product.rating}</span>
-          <span className="text-xs text-gray-400">({product.reviewCount}件)</span>
+          <span className="text-xs text-gray-400">({product.reviewCount.toLocaleString()}件)</span>
         </div>
 
         <p className="text-xs text-gray-500 line-clamp-2">{product.description}</p>

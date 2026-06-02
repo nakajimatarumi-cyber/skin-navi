@@ -1,0 +1,26 @@
+{
+  "name": "SkinNavi - AI肌診断",
+  "short_name": "SkinNavi",
+  "description": "あなたの肌に合ったスキンケアをAIが提案",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f43f5e",
+  "orientation": "portrait",
+  "categories": ["beauty", "lifestyle", "health"],
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}

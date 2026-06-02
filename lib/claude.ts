@@ -1,16 +1,12 @@
+import "server-only";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { DiagnosisAnswers } from "@/data/quiz";
-import { products, Product } from "@/data/products";
+import { products } from "@/data/products";
+import { RecommendationResult } from "@/lib/types";
+
+export type { RecommendationResult };
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
-
-export type RecommendationResult = {
-  skinProfile: string;
-  recommendedProductIds: string[];
-  reasons: Record<string, string>;
-  routineTips: string[];
-  peelingAdvice: string;
-};
 
 function buildPrompt(answers: DiagnosisAnswers): string {
   const skinTypeMap: Record<string, string> = {
@@ -92,10 +88,4 @@ export async function getDiagnosisRecommendation(
   const text = result.response.text().trim();
   const jsonText = text.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
   return JSON.parse(jsonText) as RecommendationResult;
-}
-
-export function getRecommendedProducts(productIds: string[]): Product[] {
-  return productIds
-    .map((id) => products.find((p) => p.id === id))
-    .filter((p): p is Product => p !== undefined);
 }

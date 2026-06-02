@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { RecommendationResult, getRecommendedProducts } from "@/lib/claude";
+import { RecommendationResult } from "@/lib/types";
+import { getRecommendedProducts } from "@/lib/products-utils";
 import { DiagnosisAnswers } from "@/data/quiz";
 import { Product } from "@/data/products";
 import ProductCard from "@/components/products/ProductCard";

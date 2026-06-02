@@ -21,15 +21,24 @@ export type Product = {
   affiliateLinks: AffiliateLinks;
 };
 
-const TAG = "skinnavi-22";
+const AMAZON_TAG = "skinnavi-22";
+const RAKUTEN_ID = "5471e9b9.6b166d14.5471e9ba.9b177d5d";
 
 // AmazonアソシエイトASIN画像URL生成
 const amazonImage = (asin: string) =>
-  `https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=${asin}&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=${TAG}&language=ja_JP`;
+  `https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=${asin}&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=${AMAZON_TAG}&language=ja_JP`;
 
 // Amazon商品リンク生成
 const amazonLink = (asin: string) =>
-  `https://www.amazon.co.jp/dp/${asin}?tag=${TAG}`;
+  `https://www.amazon.co.jp/dp/${asin}?tag=${AMAZON_TAG}`;
+
+// 楽天アフィリエイトリンク生成
+const rakutenLink = (keyword: string) => {
+  const encoded = encodeURIComponent(
+    `https://search.rakuten.co.jp/search/mall/${keyword}/`
+  );
+  return `https://hb.afl.rakuten.co.jp/ichiba/${RAKUTEN_ID}/?pc=${encoded}&link_type=text`;
+};
 
 export const products: Product[] = [
   {
@@ -48,7 +57,7 @@ export const products: Product[] = [
     reviewCount: 18432,
     affiliateLinks: {
       amazon: amazonLink("B003BVMQBW"),
-      rakuten: "https://search.rakuten.co.jp/search/mall/肌ラボ+極潤プレミアムヒアルロン液/",
+      rakuten: rakutenLink("肌ラボ+極潤プレミアムヒアルロン液"),
       qoo10: "https://www.qoo10.jp/search/?keyword=肌ラボ+極潤プレミアム",
     },
   },
@@ -68,7 +77,7 @@ export const products: Product[] = [
     reviewCount: 12847,
     affiliateLinks: {
       amazon: amazonLink("B07PXWL95R"),
-      rakuten: "https://search.rakuten.co.jp/search/mall/ミノン+アミノモイスト+ローション/",
+      rakuten: rakutenLink("ミノン+アミノモイスト+ローション"),
       qoo10: "https://www.qoo10.jp/search/?keyword=ミノン+アミノモイスト+ローション",
     },
   },
@@ -88,7 +97,7 @@ export const products: Product[] = [
     reviewCount: 42651,
     affiliateLinks: {
       amazon: amazonLink("B07BDRNN28"),
-      rakuten: "https://search.rakuten.co.jp/search/mall/ファンケル+マイルドクレンジングオイル/",
+      rakuten: rakutenLink("ファンケル+マイルドクレンジングオイル"),
       qoo10: "https://www.qoo10.jp/search/?keyword=ファンケル+クレンジングオイル",
     },
   },
@@ -108,7 +117,7 @@ export const products: Product[] = [
     reviewCount: 28943,
     affiliateLinks: {
       amazon: amazonLink("B001ETPE2A"),
-      rakuten: "https://search.rakuten.co.jp/search/mall/メラノCC+薬用しみ集中対策美容液/",
+      rakuten: rakutenLink("メラノCC+薬用しみ集中対策美容液"),
       qoo10: "https://www.qoo10.jp/search/?keyword=メラノCC+美容液",
     },
   },
@@ -128,7 +137,7 @@ export const products: Product[] = [
     reviewCount: 8762,
     affiliateLinks: {
       amazon: amazonLink("B09MPNP21N"),
-      rakuten: "https://search.rakuten.co.jp/search/mall/COSRX+ナイアシンアミド/",
+      rakuten: rakutenLink("COSRX+ナイアシンアミド15+フェイスクリーム"),
       qoo10: "https://www.qoo10.jp/search/?keyword=COSRX+ナイアシンアミド",
     },
   },
@@ -148,7 +157,7 @@ export const products: Product[] = [
     reviewCount: 35218,
     affiliateLinks: {
       amazon: amazonLink("B08VGWK8MV"),
-      rakuten: "https://search.rakuten.co.jp/search/mall/ビオレUV+アクアリッチ+エッセンス/",
+      rakuten: rakutenLink("ビオレUV+アクアリッチウォータリーエッセンス"),
       qoo10: "https://www.qoo10.jp/search/?keyword=ビオレUV+アクアリッチ",
     },
   },
@@ -168,7 +177,7 @@ export const products: Product[] = [
     reviewCount: 22134,
     affiliateLinks: {
       amazon: amazonLink("B0B8T2M4Z7"),
-      rakuten: "https://search.rakuten.co.jp/search/mall/アネッサ+パーフェクトUV+ミルク/",
+      rakuten: rakutenLink("アネッサ+パーフェクトUV+スキンケアミルク"),
       qoo10: "https://www.qoo10.jp/search/?keyword=アネッサ+パーフェクトUV",
     },
   },
@@ -188,7 +197,7 @@ export const products: Product[] = [
     reviewCount: 15893,
     affiliateLinks: {
       amazon: amazonLink("B07YZN73RH"),
-      rakuten: "https://search.rakuten.co.jp/search/mall/CeraVe+モイスチャライジングクリーム/",
+      rakuten: rakutenLink("CeraVe+モイスチャライジングクリーム"),
       qoo10: "https://www.qoo10.jp/search/?keyword=CeraVe+セラヴィ+クリーム",
     },
   },
@@ -208,7 +217,7 @@ export const products: Product[] = [
     reviewCount: 19832,
     affiliateLinks: {
       amazon: amazonLink("B003VWKZX4"),
-      rakuten: "https://search.rakuten.co.jp/search/mall/タカミスキンピール/",
+      rakuten: rakutenLink("タカミスキンピール"),
       qoo10: "https://www.qoo10.jp/search/?keyword=タカミスキンピール",
     },
   },
@@ -228,7 +237,7 @@ export const products: Product[] = [
     reviewCount: 11247,
     affiliateLinks: {
       amazon: amazonLink("B07PHFJYB7"),
-      rakuten: "https://search.rakuten.co.jp/search/mall/ニュートロジーナ+ハイドロブースト/",
+      rakuten: rakutenLink("ニュートロジーナ+ハイドロブースト+ウォータージェル"),
       qoo10: "https://www.qoo10.jp/search/?keyword=ニュートロジーナ+ハイドロブースト",
     },
   },
@@ -248,7 +257,7 @@ export const products: Product[] = [
     reviewCount: 7624,
     affiliateLinks: {
       amazon: amazonLink("B09DHFZ1PQ"),
-      rakuten: "https://search.rakuten.co.jp/search/mall/オルビス+ユードット+ホワイトニング/",
+      rakuten: rakutenLink("オルビス+ユードット+ホワイトニングセラム"),
       qoo10: "https://www.qoo10.jp/search/?keyword=オルビス+ユードット+美容液",
     },
   },
@@ -268,7 +277,7 @@ export const products: Product[] = [
     reviewCount: 9341,
     affiliateLinks: {
       amazon: amazonLink("B07K1GSVCB"),
-      rakuten: "https://search.rakuten.co.jp/search/mall/ドクタージャルト+シカペア/",
+      rakuten: rakutenLink("ドクタージャルト+シカペアクリーム"),
       qoo10: "https://www.qoo10.jp/search/?keyword=ドクタージャルト+シカペア",
     },
   },

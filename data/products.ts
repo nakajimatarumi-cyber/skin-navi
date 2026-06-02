@@ -23,6 +23,7 @@ export type Product = {
 
 const AMAZON_TAG = "skinnavi-22";
 const RAKUTEN_ID = "5471e9b9.6b166d14.5471e9ba.9b177d5d";
+const QOO10_ID = "1465605654";
 
 // AmazonアソシエイトASIN画像URL生成
 const amazonImage = (asin: string) =>
@@ -39,6 +40,10 @@ const rakutenLink = (keyword: string) => {
   );
   return `https://hb.afl.rakuten.co.jp/ichiba/${RAKUTEN_ID}/?pc=${encoded}&link_type=text`;
 };
+
+// Qoo10アフィリエイトリンク生成
+const qoo10Link = (keyword: string) =>
+  `https://www.qoo10.jp/su/${QOO10_ID}/search/?keyword=${encodeURIComponent(keyword)}`;
 
 export const products: Product[] = [
   {
@@ -58,7 +63,7 @@ export const products: Product[] = [
     affiliateLinks: {
       amazon: amazonLink("B003BVMQBW"),
       rakuten: rakutenLink("肌ラボ+極潤プレミアムヒアルロン液"),
-      qoo10: "https://www.qoo10.jp/search/?keyword=肌ラボ+極潤プレミアム",
+      qoo10: qoo10Link("肌ラボ 極潤プレミアムヒアルロン液"),
     },
   },
   {
@@ -78,7 +83,7 @@ export const products: Product[] = [
     affiliateLinks: {
       amazon: amazonLink("B07PXWL95R"),
       rakuten: rakutenLink("ミノン+アミノモイスト+ローション"),
-      qoo10: "https://www.qoo10.jp/search/?keyword=ミノン+アミノモイスト+ローション",
+      qoo10: qoo10Link("ミノン アミノモイスト ローション"),
     },
   },
   {
@@ -98,7 +103,7 @@ export const products: Product[] = [
     affiliateLinks: {
       amazon: amazonLink("B07BDRNN28"),
       rakuten: rakutenLink("ファンケル+マイルドクレンジングオイル"),
-      qoo10: "https://www.qoo10.jp/search/?keyword=ファンケル+クレンジングオイル",
+      qoo10: qoo10Link("ファンケル マイルドクレンジングオイル"),
     },
   },
   {
@@ -118,7 +123,7 @@ export const products: Product[] = [
     affiliateLinks: {
       amazon: amazonLink("B001ETPE2A"),
       rakuten: rakutenLink("メラノCC+薬用しみ集中対策美容液"),
-      qoo10: "https://www.qoo10.jp/search/?keyword=メラノCC+美容液",
+      qoo10: qoo10Link("メラノCC 美容液"),
     },
   },
   {
@@ -138,7 +143,7 @@ export const products: Product[] = [
     affiliateLinks: {
       amazon: amazonLink("B09MPNP21N"),
       rakuten: rakutenLink("COSRX+ナイアシンアミド15+フェイスクリーム"),
-      qoo10: "https://www.qoo10.jp/search/?keyword=COSRX+ナイアシンアミド",
+      qoo10: qoo10Link("COSRX ナイアシンアミド"),
     },
   },
   {
@@ -158,7 +163,7 @@ export const products: Product[] = [
     affiliateLinks: {
       amazon: amazonLink("B08VGWK8MV"),
       rakuten: rakutenLink("ビオレUV+アクアリッチウォータリーエッセンス"),
-      qoo10: "https://www.qoo10.jp/search/?keyword=ビオレUV+アクアリッチ",
+      qoo10: qoo10Link("ビオレUV アクアリッチ"),
     },
   },
   {
@@ -178,7 +183,7 @@ export const products: Product[] = [
     affiliateLinks: {
       amazon: amazonLink("B0B8T2M4Z7"),
       rakuten: rakutenLink("アネッサ+パーフェクトUV+スキンケアミルク"),
-      qoo10: "https://www.qoo10.jp/search/?keyword=アネッサ+パーフェクトUV",
+      qoo10: qoo10Link("アネッサ パーフェクトUV"),
     },
   },
   {
@@ -198,7 +203,7 @@ export const products: Product[] = [
     affiliateLinks: {
       amazon: amazonLink("B07YZN73RH"),
       rakuten: rakutenLink("CeraVe+モイスチャライジングクリーム"),
-      qoo10: "https://www.qoo10.jp/search/?keyword=CeraVe+セラヴィ+クリーム",
+      qoo10: qoo10Link("CeraVe モイスチャライジングクリーム"),
     },
   },
   {
@@ -218,7 +223,7 @@ export const products: Product[] = [
     affiliateLinks: {
       amazon: amazonLink("B003VWKZX4"),
       rakuten: rakutenLink("タカミスキンピール"),
-      qoo10: "https://www.qoo10.jp/search/?keyword=タカミスキンピール",
+      qoo10: qoo10Link("タカミスキンピール"),
     },
   },
   {
@@ -238,7 +243,7 @@ export const products: Product[] = [
     affiliateLinks: {
       amazon: amazonLink("B07PHFJYB7"),
       rakuten: rakutenLink("ニュートロジーナ+ハイドロブースト+ウォータージェル"),
-      qoo10: "https://www.qoo10.jp/search/?keyword=ニュートロジーナ+ハイドロブースト",
+      qoo10: qoo10Link("ニュートロジーナ ハイドロブースト"),
     },
   },
   {
@@ -258,7 +263,7 @@ export const products: Product[] = [
     affiliateLinks: {
       amazon: amazonLink("B09DHFZ1PQ"),
       rakuten: rakutenLink("オルビス+ユードット+ホワイトニングセラム"),
-      qoo10: "https://www.qoo10.jp/search/?keyword=オルビス+ユードット+美容液",
+      qoo10: qoo10Link("オルビス ユードット ホワイトニングセラム"),
     },
   },
   {
@@ -278,7 +283,7 @@ export const products: Product[] = [
     affiliateLinks: {
       amazon: amazonLink("B07K1GSVCB"),
       rakuten: rakutenLink("ドクタージャルト+シカペアクリーム"),
-      qoo10: "https://www.qoo10.jp/search/?keyword=ドクタージャルト+シカペア",
+      qoo10: qoo10Link("ドクタージャルト シカペアクリーム"),
     },
   },
 ];

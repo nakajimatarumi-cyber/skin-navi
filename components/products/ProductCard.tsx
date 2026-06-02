@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Heart, Star, ShoppingBag } from "lucide-react";
-import { Product, categoryLabels } from "@/data/products";
+import { Product, categoryLabels, categoryEmojis } from "@/data/products";
 import { toggleFavorite, isFavorite } from "@/lib/favorites";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -28,8 +28,19 @@ export default function ProductCard({ product, reason, showReason }: Props) {
 
   return (
     <Card className="overflow-hidden hover:shadow-md transition-shadow border-rose-100">
-      <div className="relative bg-rose-50 aspect-square flex items-center justify-center">
-        <div className="text-6xl">🧴</div>
+      <div className={`relative aspect-square flex items-center justify-center ${
+        {
+          cleanser: "bg-blue-50",
+          toner: "bg-cyan-50",
+          serum: "bg-yellow-50",
+          moisturizer: "bg-green-50",
+          sunscreen: "bg-orange-50",
+          mask: "bg-emerald-50",
+          eye_cream: "bg-purple-50",
+          oil: "bg-pink-50",
+        }[product.category] ?? "bg-rose-50"
+      }`}>
+        <div className="text-6xl">{categoryEmojis[product.category]}</div>
         <button
           onClick={handleFavorite}
           className="absolute top-2 right-2 p-2 rounded-full bg-white/80 hover:bg-white transition-colors"

@@ -29,9 +29,9 @@ const QOO10_ID = "1465605654";
 const amazonImage = (asin: string) =>
   `https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&ASIN=${asin}&Format=_SL250_&ID=AsinImage&MarketPlace=JP&ServiceVersion=20070822&WS=1&tag=${AMAZON_TAG}&language=ja_JP`;
 
-// Amazon商品リンク生成
-const amazonLink = (asin: string) =>
-  `https://www.amazon.co.jp/dp/${asin}?tag=${AMAZON_TAG}`;
+// Amazon検索リンク生成（キーワード検索＋アフィリエイトタグ）
+const amazonLink = (keyword: string) =>
+  `https://www.amazon.co.jp/s?k=${encodeURIComponent(keyword)}&tag=${AMAZON_TAG}`;
 
 // 楽天アフィリエイトリンク生成
 const rakutenLink = (keyword: string) => {
@@ -43,7 +43,7 @@ const rakutenLink = (keyword: string) => {
 
 // Qoo10アフィリエイトリンク生成
 const qoo10Link = (keyword: string) =>
-  `https://www.qoo10.jp/su/${QOO10_ID}/search/?keyword=${encodeURIComponent(keyword)}`;
+  `https://www.qoo10.jp/search/?keyword=${encodeURIComponent(keyword)}&affiliate_code=${QOO10_ID}`;
 
 export const products: Product[] = [
   {
@@ -61,7 +61,7 @@ export const products: Product[] = [
     rating: 4.5,
     reviewCount: 18432,
     affiliateLinks: {
-      amazon: amazonLink("B003BVMQBW"),
+      amazon: amazonLink("肌ラボ 極潤プレミアムヒアルロン液"),
       rakuten: rakutenLink("肌ラボ+極潤プレミアムヒアルロン液"),
       qoo10: qoo10Link("肌ラボ 極潤プレミアムヒアルロン液"),
     },
@@ -81,7 +81,7 @@ export const products: Product[] = [
     rating: 4.6,
     reviewCount: 12847,
     affiliateLinks: {
-      amazon: amazonLink("B07PXWL95R"),
+      amazon: amazonLink("ミノン アミノモイスト モイストチャージローション"),
       rakuten: rakutenLink("ミノン+アミノモイスト+ローション"),
       qoo10: qoo10Link("ミノン アミノモイスト ローション"),
     },
@@ -101,7 +101,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviewCount: 42651,
     affiliateLinks: {
-      amazon: amazonLink("B07BDRNN28"),
+      amazon: amazonLink("ファンケル マイルドクレンジングオイル"),
       rakuten: rakutenLink("ファンケル+マイルドクレンジングオイル"),
       qoo10: qoo10Link("ファンケル マイルドクレンジングオイル"),
     },
@@ -121,7 +121,7 @@ export const products: Product[] = [
     rating: 4.5,
     reviewCount: 28943,
     affiliateLinks: {
-      amazon: amazonLink("B001ETPE2A"),
+      amazon: amazonLink("メラノCC 薬用しみ集中対策美容液"),
       rakuten: rakutenLink("メラノCC+薬用しみ集中対策美容液"),
       qoo10: qoo10Link("メラノCC 美容液"),
     },
@@ -141,7 +141,7 @@ export const products: Product[] = [
     rating: 4.4,
     reviewCount: 8762,
     affiliateLinks: {
-      amazon: amazonLink("B09MPNP21N"),
+      amazon: amazonLink("COSRX ナイアシンアミド15 フェイスクリーム"),
       rakuten: rakutenLink("COSRX+ナイアシンアミド15+フェイスクリーム"),
       qoo10: qoo10Link("COSRX ナイアシンアミド"),
     },
@@ -161,7 +161,7 @@ export const products: Product[] = [
     rating: 4.6,
     reviewCount: 35218,
     affiliateLinks: {
-      amazon: amazonLink("B08VGWK8MV"),
+      amazon: amazonLink("ビオレUV アクアリッチウォータリーエッセンス SPF50+"),
       rakuten: rakutenLink("ビオレUV+アクアリッチウォータリーエッセンス"),
       qoo10: qoo10Link("ビオレUV アクアリッチ"),
     },
@@ -181,7 +181,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviewCount: 22134,
     affiliateLinks: {
-      amazon: amazonLink("B0B8T2M4Z7"),
+      amazon: amazonLink("アネッサ パーフェクトUV スキンケアミルク SPF50+"),
       rakuten: rakutenLink("アネッサ+パーフェクトUV+スキンケアミルク"),
       qoo10: qoo10Link("アネッサ パーフェクトUV"),
     },
@@ -201,7 +201,7 @@ export const products: Product[] = [
     rating: 4.6,
     reviewCount: 15893,
     affiliateLinks: {
-      amazon: amazonLink("B07YZN73RH"),
+      amazon: amazonLink("CeraVe モイスチャライジングクリーム"),
       rakuten: rakutenLink("CeraVe+モイスチャライジングクリーム"),
       qoo10: qoo10Link("CeraVe モイスチャライジングクリーム"),
     },
@@ -221,7 +221,7 @@ export const products: Product[] = [
     rating: 4.4,
     reviewCount: 19832,
     affiliateLinks: {
-      amazon: amazonLink("B003VWKZX4"),
+      amazon: amazonLink("タカミスキンピール"),
       rakuten: rakutenLink("タカミスキンピール"),
       qoo10: qoo10Link("タカミスキンピール"),
     },
@@ -241,7 +241,7 @@ export const products: Product[] = [
     rating: 4.4,
     reviewCount: 11247,
     affiliateLinks: {
-      amazon: amazonLink("B07PHFJYB7"),
+      amazon: amazonLink("ニュートロジーナ ハイドロブースト ウォータージェル"),
       rakuten: rakutenLink("ニュートロジーナ+ハイドロブースト+ウォータージェル"),
       qoo10: qoo10Link("ニュートロジーナ ハイドロブースト"),
     },
@@ -261,7 +261,7 @@ export const products: Product[] = [
     rating: 4.5,
     reviewCount: 7624,
     affiliateLinks: {
-      amazon: amazonLink("B09DHFZ1PQ"),
+      amazon: amazonLink("オルビス ユードット ホワイトニングセラム"),
       rakuten: rakutenLink("オルビス+ユードット+ホワイトニングセラム"),
       qoo10: qoo10Link("オルビス ユードット ホワイトニングセラム"),
     },
@@ -281,7 +281,7 @@ export const products: Product[] = [
     rating: 4.5,
     reviewCount: 9341,
     affiliateLinks: {
-      amazon: amazonLink("B07K1GSVCB"),
+      amazon: amazonLink("ドクタージャルト シカペアクリーム"),
       rakuten: rakutenLink("ドクタージャルト+シカペアクリーム"),
       qoo10: qoo10Link("ドクタージャルト シカペアクリーム"),
     },
